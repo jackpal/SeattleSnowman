@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Devices</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+<table>
+{{range .}}
+<tr><td>{{.Name}}</td>
+<td><button type="button" onClick='addIP("{{.IP}}")'>+</button></td>
+<td>
+  {{if not ( timeIsZero .ActiveUntil )}}
+    <td><button type="button" onClick='subIP("{{.IP}}")'>-</button></td>
+    <td>{{kitchen .ActiveUntil}}</td>
+  {{end}}
+</td>
+</tr>
+{{end}}
+</table>
+<p>
+<script src="devices.js"></script>
+<noscript>The buttons on this page require JavaScript to work.</noscript>
+</body>
+</html>

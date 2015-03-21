@@ -22,3 +22,12 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# Database
+# You'll want to back this up somehow, but probably not to a public server.
+
+seattlesnowman.db
+
+# Log file.
+
+seattlesnowman.log

@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Admin Console</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+<body>
+  <h1>Admin Console</h1>
+  This is a collection of utility forms for administering the application.<p>
+  Normal users are expected to use the <a href="devices.html">Device List</a>.
+  <h2>Upload Configuration</h2>
+  <div>
+    <form action="/uploadDevices" method="POST" enctype="multipart/form-data">
+      <label for="file">Filename:</label>
+      <input type="file" name="file" id="file">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+  <h2>Add Device</h2>
+  <div>
+    <form action="/addDevice" method="POST">
+      <label for='ip'>IP:</label>
+      <input type="text" name="ip" value="192.168.1.208">
+      <br>
+      <label for='name'>Name</label>
+      <input type="text" name="name" value="A">
+      <input type="submit" value="Add">
+    </form>
+  </div>
+  <h2>View Device List</h2>
+  <div>
+    <a href="/deviceList">Device List as raw JSON</a>
+  </div>
+  <h2>View Block List</h2>
+  <div>
+    <a href="/blockList">Block List as raw JSON</a>
+  </div>
+  <h2>Block Access</h2>
+  <div>
+    <form action="/block" method="POST">
+      IP:<input type="text" name="ip" value="192.168.1.208">
+      <input type="submit" value="Block">
+    </form>
+  </div>
+  <h2>Enable Access</h2>
+  <div>
+    <form action="/unblock" method="POST">
+      IP:<input type="text" name="ip" value="192.168.1.208">
+      <br>
+      Hours:<input type="text" name="hours" value="1">
+      <input type="submit" value="Unblock">
+    </form>
+  </div>
+  <h2>Modify Access</h2>
+  <div>
+    <form action="/modifyActiveUntil" method="POST">
+      IP:<input type="text" name="ip" value="192.168.1.208">
+      <br>
+      Delta:<input type="text" name="delta" value="1h">
+      <input type="submit" value="Modify">
+    </form>
+  </div>
+</body>
+</html>
