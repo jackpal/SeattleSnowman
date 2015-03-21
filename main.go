@@ -20,7 +20,7 @@ import (
 
 var port = flag.Int("port", 8080, "Port to serve from.")
 
-var addressGroup = "KIDS"
+var addressGroup = "SEATTLESNOWMAN_DROP"
 
 var database = flag.String("database", "seattlesnowman.db", "Database file.")
 
@@ -53,11 +53,9 @@ func newWatcher() (w *watcher.Watcher, err error) {
 		return
 	}
 	firewall := router.NewEdgeRouterFirewall(*routerAddress, *routerPrivateKeyPath)
-	w = watcher.NewWatcher(database, calendar, firewall)
+	w = watcher.NewWatcher(database, calendar, firewall, addressGroup)
 	return
 }
-
-// var router = flag.String("router", "", "The Edge Router Lite to talk to.")
 
 func writeJSON(w http.ResponseWriter, jsonData interface{}, err error) {
 	if err != nil {

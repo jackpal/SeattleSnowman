@@ -11,10 +11,11 @@ import (
 
 // Internal implementation of the Watcher.
 type firewallUpdater struct {
-	db        db.DB
-	calendar  db.Calendar
-	firewall  router.Firewall
-	goodUntil time.Time
+	db           db.DB
+	calendar     db.Calendar
+	firewall     router.Firewall
+	addressGroup string
+	goodUntil    time.Time
 }
 
 func (f *firewallUpdater) getBlockList() (blocked []db.DeviceIP, goodUntil time.Time, err error) {
@@ -35,7 +36,7 @@ func (f *firewallUpdater) updateFirewall() (newWakeTime bool, err error) {
 		ips = append(ips, net.IP(deviceIP))
 	}
 	log.Printf("new blocklist: %v", ips)
-	err = f.firewall.SetAddressGroup("KIDS", ips)
+	err = f.firewall.SetAddressGroup(addressGroup, ips)
 	return
 }
 
@@ -46,10 +47,11 @@ type Watcher struct {
 	timeout  chan bool
 }
 
-func NewWatcher(db db.DB, calendar db.Calendar, firewall router.Firewall) (w *Watcher) {
+func NewWatcher(db db.DB, calendar db.Calendar, firewall router.Firewall,
+	addressGroup string) (w *Watcher) {
 	return &Watcher{
 		db,
-		&firewallUpdater{db, calendar, firewall, time.Time{}},
+		&firewallUpdater{db, calendar, firewall, addressGroup, time.Time{}},
 		make(chan func(*firewallUpdater), 1),
 		make(chan bool, 1),
 	}
