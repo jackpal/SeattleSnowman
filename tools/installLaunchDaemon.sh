@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (C) 2015 John Howard Palevich. All Rights Reserved.
 
 set -u
 set -e

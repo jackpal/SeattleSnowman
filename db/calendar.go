@@ -1,3 +1,5 @@
+// Copyright (C) 2015 John Howard Palevich. All Rights Reserved.
+
 package db
 
 import "time"

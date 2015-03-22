@@ -1,6 +1,8 @@
 Seattle Snowman:  A Utility for Managing Internet Access
 ========================================================
 
+Copyright (C) 2015 John Howard Palevich. All Rights Reserved.
+
 Introduction
 ------------
 
@@ -140,3 +142,32 @@ to automatically compile and restart the server behind a proxy:
     $ go get github.com/codegangsta/gin
     $ gin
     $ open http://localhost:3000
+
+FAQ
+---
+
+Q: Why is it named "Seattle Snowman"?
+
+A: Because I wrote it in the Seattle winter. Also, it's so complicated that
+"snow man" can understand it.
+
+Q: Do you really think this will be useful to anyone beside you?
+
+A: Mybe not at the moment, but perhaps in the future if more types of
+routers are supported.
+
+Q: Won't your kids just use the app to grant themselves Internet time?
+
+A: Yes, probably. Once they do that I'll add "Basic Auth".
+
+Q: Won't your kids just manually change their device's IP addresses?
+
+A: Well, perhaps. The Edgerouter has some advanced router configuration
+tools  that make it harder to do this. I guess I'll investigate that if/when it
+becomes a problem.
+
+Q: Won't your kids just use their phones?
+
+A: Yes. At the moment only one of my kids is old enough for a phone, but in
+a year or two they'll all have them. The only thing I can think of is to collect
+the phones every night and give them back in the morning. Jailer dad.

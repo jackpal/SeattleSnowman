@@ -1,3 +1,5 @@
+// Copyright (C) 2015 John Howard Palevich. All Rights Reserved.
+
 function addIP(ip) {
   modifyActiveUntil(ip, "1h");
 }
