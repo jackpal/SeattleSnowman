@@ -153,7 +153,7 @@ A: Because I wrote it in the Seattle winter. Also, it's so complicated that
 
 Q: Do you really think this will be useful to anyone beside you?
 
-A: Mybe not at the moment, but perhaps in the future if more types of
+A: Maybe not at the moment, but perhaps in the future if more types of
 routers are supported.
 
 Q: Won't your kids just use the app to grant themselves Internet time?
