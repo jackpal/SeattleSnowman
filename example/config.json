@@ -5,7 +5,7 @@
 
   "database": "seattlesnowman.db",
 
-  "routeraddress": "10.10.1.1",
+  "routeraddress": "192.168.1.1",
 
   "routerPrivateKeyPath": "/Users/YOURUSERNAME/.ssh/ROUTER_rsa",
 
@@ -20,8 +20,8 @@
     },
 
     "devices":[
-        {"ip": "10.10.1.100", "name": "computer"},
-        {"ip": "10.10.1.101", "name": "tablet"},
-        {"ip": "10.10.1.102", "name": "game-console"}
+        {"ip": "192.168.1.201", "name": "my-first-computer"},
+        {"ip": "192.168.1.202", "name": "my-second-computer"},
+        {"ip": "192.168.1.203", "name": "my-third-computer"}
     ]
 }

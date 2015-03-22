@@ -27,7 +27,7 @@ RouterAddress is the address of the router's SSH server. It can optionally
 have a :PORT if you have configured your router to listen for ssh on a
 nonstandard port.
 
-      "routeraddress": "10.10.1.1",
+      "routeraddress": "192.168.1.1",
 
 RouterPrivateKeyPath is the path to your router's private ssh key.
 
@@ -63,8 +63,8 @@ ends at the end of endday.
 These are the devices to manage. The IP addresses need to be assigned
 statically. (Typically this is done using the router's DHCP server.)
 
-            {"ip": "10.10.1.100", "name": "computer"},
-            {"ip": "10.10.1.101", "name": "tablet"},
-            {"ip": "10.10.1.102", "name": "game-console"}
+            {"ip": "192.168.1.201", "name": "my-first-computer"},
+            {"ip": "192.168.1.202", "name": "my-second-computer"},
+            {"ip": "192.168.1.203", "name": "my-third-computer"}
         ]
     }
