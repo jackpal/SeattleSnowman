@@ -1,6 +1,6 @@
 # Example
 
-This directory contains an example [config.json] configuration file.
+This directory contains an example [config.json](config.json) configuration file.
 
 You'll need to edit it to adapt it to your network.
 
