@@ -23,16 +23,20 @@ _testmain.go
 *.test
 *.prof
 
+# The executable if you did "go build"
+
+/SeattleSnowman
+
 # Configuration file
 # You'll want to back this up, but probably not on a public server.
 
-./config.json
+/config.json
 
 # Database
 # You'll want to back this up, but probably not in a public server.
 
-./seattlesnowman.db
+/seattlesnowman.db
 
 # Log file. Generally you don't want to back this up.
 
-./seattlesnowman.log
+/seattlesnowman.log
