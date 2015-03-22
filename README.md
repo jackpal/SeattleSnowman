@@ -101,6 +101,6 @@ Developer Tips
 For a speedier development cycle use [gin](https://github.com/codegangsta/gin)
 to automatically compile and restart the server behind a proxy:
 
-  $ go get github.com/codegangsta/gin
-  $ gin
-  $ open http://localhost:3000
+    $ go get github.com/codegangsta/gin
+    $ gin
+    $ open http://localhost:3000
