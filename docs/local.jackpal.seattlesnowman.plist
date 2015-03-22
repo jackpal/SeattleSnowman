@@ -7,12 +7,12 @@
       <key>ProgramArguments</key>
          <array>
             <!-- This is the absolute path to your Seattle Snowman install -->
-            <string>/Users/jack/code/gocode/bin/seattlesnowman</string>
+            <string>/Users/jack/code/gocode/bin/SeattleSnowman</string>
          </array>
       <key>WorkingDirectory</key>
-         <string>/Users/jack/code/gocode/src/github.com/jackpal/seattlesnowman</string>
+         <string>/Users/jack/code/gocode/src/github.com/jackpal/SeattleSnowman</string>
       <key>StandardErrorPath</key>
-          <string>/Users/jack/code/gocode/src/github.com/jackpal/seattlesnowman/seattlesnowman.log</string>
+          <string>/Users/jack/code/gocode/src/github.com/jackpal/SeattleSnowman/seattlesnowman.log</string>
       <key>UserName</key>
          <string>jack</string>
       <key>RunAtLoad</key>

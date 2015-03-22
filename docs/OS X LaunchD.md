@@ -6,7 +6,7 @@ OS X LaunchD Instructions
 
  + Install
 
-   cd seattlesnowman
+   cd SeattleSnowman
    go install
    sudo tools/installLaunchDaemon.sh
 

@@ -67,7 +67,7 @@ Start the app
 Once you've configured your router and the application, you can start the
 application from the command line:
 
-    $ seattlesnowman
+    $ SeattleSnowman
 
 Then use a web browser to connect to the server (default port 8080).
 
