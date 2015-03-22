@@ -307,7 +307,7 @@ func loadConfig() (config *Configuration, err error) {
 	if err != nil {
 		return
 	}
-	log.Printf("Configuration: %#V", c)
+	log.Printf("Configuration: %+v", c)
 	config = &c
 	return
 }

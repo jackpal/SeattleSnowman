@@ -26,13 +26,13 @@ _testmain.go
 # Configuration file
 # You'll want to back this up, but probably not on a public server.
 
-config.json
+./config.json
 
 # Database
 # You'll want to back this up, but probably not in a public server.
 
-seattlesnowman.db
+./seattlesnowman.db
 
-# Log file.
+# Log file. Generally you don't want to back this up.
 
-seattlesnowman.log
+./seattlesnowman.log
