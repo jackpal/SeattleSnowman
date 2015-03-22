@@ -33,14 +33,7 @@ Then connect to the server (default port 8080) using a web browser.
 Router Configuration
 --------------------
 
-Set up your edge router to have a firewall with internet access controlled by
-a firewall group named "SEATTLESNOWMAN_DROP", and a firewall rule to drop
-Internet access for anyone in that group. See docs/edgerouter-config for an
-example.
-
-Seattle Snowman works by updating the IP addresses included in the
-firewall group "SEATTLESNOWMAN_DROP" at the appropriate times. When an IP is in
-the group, then access to the Internet is blocked for that device.
+(EdgeRoute Lite configuration)[edgerouterdoc/edgerouter.md] documentation.
 
 Application Configuration
 -------------------------

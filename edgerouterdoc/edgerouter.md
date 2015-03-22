@@ -1,3 +1,9 @@
+# EdgeRouter Lite documentation
+
+Seattle Snowman works by updating the IP addresses included in the
+firewall group "SEATTLESNOWMAN_DROP" at the appropriate times. When an IP is in
+the group, then access to the Internet is blocked for that device.
+
 # Configuring the EdgeRouter Lite
 
 I'm sorry to say that this is a complicated topic. I wish I knew how to
