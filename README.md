@@ -13,6 +13,8 @@ Features
 
 + Limit Internet access by device.
 + Limit using time and day of week.
++ Knows about school days vs. vacation days.
++ Knows about school holidays!
 + Easy UI for giving "N Hours" of access to a given device.
 
 Requirements
@@ -23,7 +25,7 @@ Requirements
   + You must be comfortable with configuring the Edge Router Lite. It's
     pretty complicated compared to regular home routers.
 + A computer on your home network that can run a go application and that is
-  always on.
+  always on. (Tested on OS X, probably works on Windows and Linux as well.)
 
 Installation
 ------------
@@ -39,19 +41,29 @@ Use the Go tool to download and build the Seattle Snowman app:
 Router Configuration
 --------------------
 
+You will need to configure your router to support the Seattle Snowman app.
+
 [EdgeRoute Lite configuration](edgerouterdoc/edgerouter.md) documentation.
 
 Application Configuration
 -------------------------
 
-When Seattle Snowman launches, it reads a configuration file. (By default it
+You will need to configure the Seattle Snowman application to know about your
+computer network.
+
+When Seattle Snowman launches, it reads a configuration file. By default it
 reads the file config.json, but this can be overridden by using the --config
-command line flag.)
+command line flag.
 
 The format of the configuration file is documented [here](example/example.md).
 
+You will need to write your own config.json file that matches your network.
+
 Start the app
 -------------
+
+Once you've configured your router and the application, you can start the
+application from the command line:
 
     $ seattlesnowman
 
