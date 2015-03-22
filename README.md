@@ -33,7 +33,7 @@ Then connect to the server (default port 8080) using a web browser.
 Router Configuration
 --------------------
 
-(EdgeRoute Lite configuration)[edgerouterdoc/edgerouter.md] documentation.
+[EdgeRoute Lite configuration](edgerouterdoc/edgerouter.md) documentation.
 
 Application Configuration
 -------------------------
@@ -58,7 +58,7 @@ Launching Seattle Snowman When your Computer Starts
 On OS X you can (and should) use launchd to ensure Seattle Snowman runs
 each time your computer restarts.
 
-(Launchd instructions)[./docs/OS X LaunchD.md]
+[Launchd instructions](./docs/OS X LaunchD.md)
 
 TODO: Provide instructions for Windows, Linux.
 
