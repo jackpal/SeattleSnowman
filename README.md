@@ -1,12 +1,19 @@
 Seattle Snowman:  A Utility for Managing Internet Access
 ========================================================
 
+Introduction
+------------
+
+This is an app I wrote to help me manage Internet access for my home network.
+
+I've published it for the enjoyment and inspiration of other parents.
+
 Features
 --------
 
 + Limit Internet access by device.
 + Limit using time and day of week.
-+ Easy to give "N Hours" of access to a device.
++ Easy UI for giving "N Hours" of access to a given device.
 
 Requirements
 ------------
@@ -14,14 +21,16 @@ Requirements
 + An Internet connection.
 + An [EdgeRouter Lite](https://www.ubnt.com/edgemax/edgerouter-lite/) router.
   + You must be comfortable with configuring the Edge Router Lite. It's
-    pretty complicated compared to regular home rouers.
+    pretty complicated compared to regular home routers.
 + A computer on your home network that can run a go application and that is
   always on.
 
 Installation
 ------------
 
-On your server computer:
+[Install Go](http://golang.org/doc/install).
+
+Use the Go tool to download and build the Seattle Snowman app:
 
     $ go get github.com/jackpal/seattlesnowman
     $ go install
