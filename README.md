@@ -34,7 +34,7 @@ Installation
 
 Use the Go tool to download and build the Seattle Snowman app:
 
-    $ go get github.com/jackpal/seattlesnowman
+    $ go get github.com/jackpal/SeattleSnowman
     $ go install
 
 

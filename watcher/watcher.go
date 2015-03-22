@@ -5,8 +5,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/jackpal/seattlesnowman/db"
-	"github.com/jackpal/seattlesnowman/router"
+	"github.com/jackpal/SeattleSnowman/db"
+	"github.com/jackpal/SeattleSnowman/router"
 )
 
 // Internal implementation of the Watcher.

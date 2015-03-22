@@ -13,9 +13,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jackpal/seattlesnowman/db"
-	"github.com/jackpal/seattlesnowman/router"
-	"github.com/jackpal/seattlesnowman/watcher"
+	"github.com/jackpal/SeattleSnowman/db"
+	"github.com/jackpal/SeattleSnowman/router"
+	"github.com/jackpal/SeattleSnowman/watcher"
 )
 
 type Configuration struct {
