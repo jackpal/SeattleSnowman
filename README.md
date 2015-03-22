@@ -24,11 +24,8 @@ Installation
 On your server computer:
 
     $ go get github.com/jackpal/seattlesnowman
-    $ seattlesnowman
+    $ go install
 
-Then connect to the server (default port 8080) using a web browser.
-
-    $ open http://localhost:8080/
 
 Router Configuration
 --------------------
@@ -43,6 +40,15 @@ reads the file config.json, but this can be overridden by using the --config
 command line flag.)
 
 The format of the configuration file is documented [here](example/example.md).
+
+Start the app
+-------------
+
+    $ seattlesnowman
+
+Then use a web browser to connect to the server (default port 8080).
+
+    $ open http://localhost:8080/
 
 Admin Console
 -------------
