@@ -9,6 +9,7 @@ import (
 	"log"
 	"net"
 	"strings"
+	"time"
 
 	"golang.org/x/crypto/ssh"
 )
@@ -167,7 +168,8 @@ func parsekey(file string) (private ssh.Signer, err error) {
 
 func (f *edgeRouterFirewall) ensureClient() (err error) {
 	if f.client != nil {
-		return
+		f.client.Close()
+		f.client = nil
 	}
 	pkey, err := parsekey(f.privateKeyPath)
 	if err != nil {
@@ -184,8 +186,8 @@ func (f *edgeRouterFirewall) ensureClient() (err error) {
 	return
 }
 
-func (f *edgeRouterFirewall) ensureSession() (session *ssh.Session, err error) {
-    for tries := 0; tries < 3; tries++ {
+func (f *edgeRouterFirewall) newSession() (session *ssh.Session, err error) {
+    for tries := uint(0); tries < 6; tries++ {
 		err = f.ensureClient()
 		if err != nil {
 			log.Printf("Could not create ssh client: %v", f.address, err.Error())
@@ -200,13 +202,14 @@ func (f *edgeRouterFirewall) ensureSession() (session *ssh.Session, err error) {
 			// client might have disconnected. Try again.
 			f.client.Close()
 			f.client = nil
+			time.Sleep((1 << tries) * time.Second)
 		}
 	}
 	return
 }
 
 func (f *edgeRouterFirewall) routerRPC(commands string) (result string, err error) {
-	session, err := f.ensureSession()
+	session, err := f.newSession()
 	if err != nil {
 		log.Printf("Failed to create session: " + err.Error())
 		// client might
@@ -234,7 +237,7 @@ func (f *edgeRouterFirewall) routerRPC(commands string) (result string, err erro
 		return
 	}
 	result = stdoutBuffer.String()
-	log.Printf("router: sent %q received %q", commands, result)
+	log.Printf("router: sent %q\nreceived %q", commands, result)
 	return
 }
 
