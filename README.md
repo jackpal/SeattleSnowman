@@ -50,13 +50,28 @@ Then use a web browser to connect to the server (default port 8080).
 
     $ open http://localhost:8080/
 
+Using the Web UI
+----------------
+
+The main URL is http://localhost:8080/devices.html
+
+It displays a list of device names along with "+" buttons.
+
+Click on the "+" button to add an hour of Internet access to the device. Each
+time you click on the "+" button another hour will be added.
+
+For each device that can currently access the Internet, the "end time" is
+displayed, as well as a "-" button that can be clicked to subtract an hour of
+Internet time.
+
+Pro Tip: You can save a bookmark on an Android or iOS device for easy access.
+
 Admin Console
 -------------
 
-There is an administrator's console at /admin.html that lets you add and
-remove devices. One of the fields on the administrator's consol lets you upload a csv file to bulk define your internet devices.
+There is an administrator's console at http://localhost:8080/admin.html that
+lets you poke at the internals of the application using a series of forms.
 
-TODO: Include an example csv file.
 
 Launching Seattle Snowman When your Computer Starts
 ---------------------------------------------------
