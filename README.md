@@ -45,42 +45,53 @@ the group, then access to the Internet is blocked for that device.
 Application Configuration
 -------------------------
 
+When Seattle Snowman launches, it reads a configuration file. (By default it
+reads the file config.json, but this can be overridden by using the --config
+command line flag.)
+
+The format of the configuration file is documented [here](example/example.md).
+
+Admin Console
+-------------
+
 There is an administrator's console at /admin.html that lets you add and
 remove devices. One of the fields on the administrator's consol lets you upload a csv file to bulk define your internet devices.
 
 TODO: Include an example csv file.
 
-Persisting Seattle Snowman
---------------------------
+Launching Seattle Snowman When your Computer Starts
+---------------------------------------------------
 
 On OS X you can (and should) use launchd to ensure Seattle Snowman runs
 each time your computer restarts.
 
 (Launchd instructions)[./docs/OS X LaunchD.md]
 
-TODO: Similar instructions for Windows, Linux.
+TODO: Provide instructions for Windows, Linux.
 
 To Do
 -----
 
-Concept of controlled, but not automatically getting access. (e.g. Wii, iPad)
-Security: Read vs. Read/Write access.
-Native apps
-Figure out reliable failure modes. Currently if someone saves the router's
++ Add concept of devices that controlled, but not automatically getting access.
+(For game consoles.)
+
++ Add security: Read vs. Read/Write access.
+
++ Write native apps.
+
++ Figure out reliable failure modes. Currently if someone saves the router's
 state using some other API while a device is not blocked, and then kills
 Seattle Snowman, then the device will never get blocked again.
 
-Launchd recipe needs to be able to update and replace a running version.
++ Need to detect and reconnect to rebooted router.
 
-Need to detect rebooted router (session dies, or just polling.).
++ Add overrides to force Internet on, off, vacation hours, workday hours.
 
-Add overrides to force Internet on, off, vacation hours, workday hours.
+Developer Tips
+--------------
 
-Developer Hints
----------------
-
-For a speedier development cycle use gin to automatically compile and restart
-the server behind a proxy:
+For a speedier development cycle use [gin](https://github.com/codegangsta/gin)
+to automatically compile and restart the server behind a proxy:
 
   $ go get github.com/codegangsta/gin
   $ gin
