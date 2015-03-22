@@ -36,7 +36,7 @@ func (f *firewallUpdater) updateFirewall() (newWakeTime bool, err error) {
 		ips = append(ips, net.IP(deviceIP))
 	}
 	log.Printf("new blocklist: %v", ips)
-	err = f.firewall.SetAddressGroup(addressGroup, ips)
+	err = f.firewall.SetAddressGroup(f.addressGroup, ips)
 	return
 }
 

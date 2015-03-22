@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -14,46 +16,55 @@ import (
 	"github.com/jackpal/seattlesnowman/db"
 	"github.com/jackpal/seattlesnowman/router"
 	"github.com/jackpal/seattlesnowman/watcher"
-
-	"github.com/namsral/flag"
 )
 
-var port = flag.Int("port", 8080, "Port to serve from.")
-
-var addressGroup = "SEATTLESNOWMAN_DROP"
-
-var database = flag.String("database", "seattlesnowman.db", "Database file.")
-
-var routerAddress = flag.String("router", "192.168.1.1:57000", "Router address (port is optional).")
-
-var routerPrivateKeyPath = flag.String("routerPrivateKeyPath",
-	"/Users/jack/.ssh/green_iris_rsa", "Router private key file")
-
-// TODO: This should be configurable. Maybe a table in the database.
-var calendarConfig = &db.CalendarConfig{
-	"America/Los_Angeles",
-	db.TimeOfDayPeriodConfig{"4:00PM", "8:00PM"},
-	db.TimeOfDayPeriodConfig{"1:00PM", "8:00PM"},
-	[]db.DateRangeConfig{
-		db.DateRangeConfig{"4/6/15", "4/10/15"},
-		db.DateRangeConfig{"5/22/15", "5/25/15"},
-	},
+type Configuration struct {
+	Port                 int    // Port to serve from.
+	AddressGroup         string // Router Filter address group.
+	Database             string // Path to database file.
+	RouterAddress        string // Router ssh address (name:port, port is optional);
+	RouterPrivateKeyPath string // Router ssh private key file.
+	Calendar             db.CalendarConfig
+	Devices              []db.Device
 }
+
+var configFile = flag.String("config", "config.json", "Configuration file.")
 
 var watch *watcher.Watcher
 
-func newWatcher() (w *watcher.Watcher, err error) {
-	database := db.NewSQLDB(*database)
+func newWatcher(config *Configuration) (w *watcher.Watcher, err error) {
+	database := db.NewSQLDB(config.Database)
 	err = database.Open()
 	if err != nil {
 		return
 	}
-	calendar, err := db.NewCalendar(calendarConfig)
+	err = maybeAddDevices(database, config.Devices)
 	if err != nil {
 		return
 	}
-	firewall := router.NewEdgeRouterFirewall(*routerAddress, *routerPrivateKeyPath)
-	w = watcher.NewWatcher(database, calendar, firewall, addressGroup)
+	calendar, err := db.NewCalendar(&config.Calendar)
+	if err != nil {
+		return
+	}
+	firewall := router.NewEdgeRouterFirewall(config.RouterAddress, config.RouterPrivateKeyPath)
+	w = watcher.NewWatcher(database, calendar, firewall, config.AddressGroup)
+	return
+}
+
+func maybeAddDevices(db db.DB, devices []db.Device) (err error) {
+	for _, device := range devices {
+		var found bool
+		_, found, err = db.Find(device.IP)
+		if err != nil {
+			return
+		}
+		if !found {
+			err = db.Add(device)
+		}
+		if err != nil {
+			return
+		}
+	}
 	return
 }
 
@@ -278,19 +289,38 @@ func handleDevicesImp(w http.ResponseWriter, r *http.Request) (err error) {
 }
 
 func main() {
+	log.Printf("Seattle Snowman starting")
+	defer log.Printf("Seattle Snowman ending")
 	err := mainLoop()
 	if err != nil {
-		log.Printf("mainLoop() = %v", err)
+		log.Printf("mainLoop() error %v", err)
 	}
 }
 
-func mainLoop() (err error) {
-	log.Printf("Kamaji starting")
-	flag.Parse()
-
-	watch, err = newWatcher()
+func loadConfig() (config *Configuration, err error) {
+	file, err := ioutil.ReadFile(*configFile)
 	if err != nil {
-		log.Printf("initWatcher() = %v", err)
+		return
+	}
+	var c Configuration
+	err = json.Unmarshal(file, &c)
+	if err != nil {
+		return
+	}
+	log.Printf("Configuration: %#V", c)
+	config = &c
+	return
+}
+
+func mainLoop() (err error) {
+	flag.Parse()
+	config, err := loadConfig()
+	if err != nil {
+		return
+	}
+	watch, err = newWatcher(config)
+	if err != nil {
+		log.Printf("newWatcher() = %v", err)
 		return
 	}
 	defer watch.Close()
@@ -309,7 +339,7 @@ func mainLoop() (err error) {
 	http.HandleFunc("/devices.html", handleDevices)
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/", fs)
-	address := net.JoinHostPort("", strconv.Itoa(*port))
+	address := net.JoinHostPort("", strconv.Itoa(config.Port))
 	err = http.ListenAndServe(address, nil)
 	return
 }

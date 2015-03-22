@@ -23,8 +23,13 @@ _testmain.go
 *.test
 *.prof
 
+# Configuration file
+# You'll want to back this up, but probably not on a public server.
+
+config.json
+
 # Database
-# You'll want to back this up somehow, but probably not to a public server.
+# You'll want to back this up, but probably not in a public server.
 
 seattlesnowman.db
 
