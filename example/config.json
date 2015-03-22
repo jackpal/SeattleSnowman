@@ -1,0 +1,27 @@
+{
+  "port": 8080,
+
+  "addressGroup": "SEATTLESNOWMAN_DROP",
+
+  "database": "seattlesnowman.db",
+
+  "routeraddress": "10.10.1.1",
+
+  "routerPrivateKeyPath": "/Users/YOURUSERNAME/.ssh/ROUTER_rsa",
+
+  "calendar": {
+    "location": "America/Los_Angeles",
+    "schooldayhours": {"starttime": "4:00PM", "endtime": "8:00PM"},
+    "vacationhours": {"starttime": "1:00PM", "endtime": "8:00PM"},
+    "holidays":[
+        {"startday": "4/6/15", "endday": "4/10/15"},
+        {"startday": "5/22/15", "endday": "5/25/15"}
+        ]
+    },
+
+    "devices":[
+        {"ip": "10.10.1.100", "name": "computer"},
+        {"ip": "10.10.1.101", "name": "tablet"},
+        {"ip": "10.10.1.102", "name": "game-console"}
+    ]
+}
