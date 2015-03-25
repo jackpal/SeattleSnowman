@@ -23,7 +23,6 @@ import (
 type Configuration struct {
 	Port                 int    // Port to serve from.
 	AddressGroup         string // Router Filter address group.
-	Database             string // Path to database file.
 	RouterAddress        string // Router ssh address (name:port, port is optional);
 	RouterPrivateKeyPath string // Router ssh private key file.
 	Calendar             db.CalendarConfig
@@ -35,7 +34,7 @@ var configFile = flag.String("config", "config.json", "Configuration file.")
 var watch *watcher.Watcher
 
 func newWatcher(config *Configuration) (w *watcher.Watcher, err error) {
-	database := db.NewSQLDB(config.Database)
+	database := db.NewRAMDB()
 	err = database.Open()
 	if err != nil {
 		return

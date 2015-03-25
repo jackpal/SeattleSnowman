@@ -114,10 +114,6 @@ To Do
 + Add support for other routers. (Hopefully provided by people who port the
 app to work with their router.)
 
-+ Consider dropping use of sql -- it's overkill for storing a list of devices,
-and it introduces a dependency on a big blob of C code. (sqlite3 is very good
-C code, but it's still C code. :-) )
-
 + Add concept of devices that controlled, but not automatically getting access.
 (For game consoles.)
 

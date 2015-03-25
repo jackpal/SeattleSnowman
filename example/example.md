@@ -18,11 +18,6 @@ This name must match the router configuration.
 
       "addressGroup": "SEATTLESNOWMAN_DROP",
 
-Database is the path to the sqlite3 database that's used to store the
-Seattle Snowman server state.
-
-      "database": "seattlesnowman.db",
-
 RouterAddress is the address of the router's SSH server. It can optionally
 have a :PORT if you have configured your router to listen for ssh on a
 nonstandard port.
