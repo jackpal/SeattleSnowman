@@ -8,11 +8,6 @@ import (
 	"time"
 )
 
-func TestSQLDB(t *testing.T) {
-	db := NewSQLDB(":memory:")
-	exerciseDB(t, db)
-}
-
 func exerciseDB(t *testing.T, db DB) {
 	err := db.Open()
 	if err != nil {

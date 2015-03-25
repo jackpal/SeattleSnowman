@@ -39,6 +39,19 @@ func NewDevice(ip string, name string) Device {
 	return Device{ParseDeviceIP(ip), name, time.Time{}}
 }
 
+// Helper func for modifying activeUntil
+func modifyActiveUntil(oldActiveUntil time.Time, delta time.Duration,
+	baseTime time.Time) (newActiveUntil time.Time) {
+	if oldActiveUntil.Before(baseTime) {
+		oldActiveUntil = baseTime
+	}
+	newActiveUntil = oldActiveUntil.Add(delta)
+	if newActiveUntil.Before(baseTime) {
+		newActiveUntil = baseTime
+	}
+	return
+}
+
 type DB interface {
 	Open() (err error)
 	Add(d Device) (err error)
@@ -47,6 +60,10 @@ type DB interface {
 	Find(ip DeviceIP) (device Device, found bool, err error)
 	All() (devices []Device, err error)
 	SetActiveUntil(ip DeviceIP, activeUntil time.Time) (err error)
+
+	// Modify the active time by the delta, taking into account the baseTime.
+	// Typically the baseTIme is "now".
+	// activeTime := max(max(activeTime, baseTime) + delta, baseTime)
 	ModifyActiveUntil(ip DeviceIP, delta time.Duration, baseTime time.Time) (err error)
 	Close() (err error)
 }

@@ -103,9 +103,6 @@ func (s *sqldb) All() (devices []Device, err error) {
 	return
 }
 
-// Modify the active time by the delta, taking into account the baseTime.
-// Typically the baseTIme is "now".
-// activeTime := max(max(activeTime, baseTime) + delta, baseTime)
 func (s *sqldb) ModifyActiveUntil(ip DeviceIP, delta time.Duration, baseTime time.Time) (err error) {
 	tx, err := s.db.Begin()
 	if err != nil {
@@ -118,13 +115,7 @@ func (s *sqldb) ModifyActiveUntil(ip DeviceIP, delta time.Duration, baseTime tim
 		return
 	}
 	oldActiveTime := SQLToTime(oldActiveTimeSQL)
-	if oldActiveTime.Before(baseTime) {
-		oldActiveTime = baseTime
-	}
-	newActiveTime := oldActiveTime.Add(delta)
-	if newActiveTime.Before(baseTime) {
-		newActiveTime = baseTime
-	}
+	newActiveTime := modifyActiveUntil(oldActiveTime, delta, baseTime)
 	_, err = tx.Exec("update devices set activeUntil=? where ip=?", timeToSQL(newActiveTime), ip.String())
 	if err != nil {
 		tx.Rollback()
