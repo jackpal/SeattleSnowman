@@ -167,3 +167,10 @@ Q: Won't your kids just use their phones?
 A: Yes. At the moment only one of my kids is old enough for a phone, but in
 a year or two they'll all have them. The only thing I can think of is to collect
 the phones every night and give them back in the morning. Jailer dad.
+
+Q: What about IPv6?
+
+A: Unfortunately this app does nothing to prevent access by IPv6 addresses.
+In theory it could be possible to add support for DHCPv6, but the snag there
+is that Android devices do not support DHCPv6. I guess the work-around is to
+disable IPv6 networking.
